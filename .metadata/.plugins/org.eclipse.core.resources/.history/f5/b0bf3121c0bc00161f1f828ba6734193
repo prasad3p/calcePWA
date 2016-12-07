@@ -29,44 +29,33 @@ public class CombineFiles {
 		NodeVal = readNodeValFile(NodeVal,FILENAME2);	
 		
 		//Write arraylists to excel file.
-		//writeToExcel(NodeCr,NodeVal);
+		writeToExcel(NodeCr,NodeVal);
 		
-		NodeCord nc = new NodeCord(0, 0, 0, 0);
-		//Point to be found
-		double x=0.0045,y=0.0189,z = 0.0056;
 		//Find nearest point in a 3d plane to a given point.
+		NodeCord nc = new NodeCord(0, 0, 0, 0);
+		double x=0,y=0,z = 0;
 		nc=findNearestNode(nc,x,y,z,NodeCr);
-		System.out.println("Nearest point:\n"
-				+"Node:"+nc.getNodeNum()
-				+" x:"+nc.getxCord()
-				+" y:"+nc.getyCord()
-				+" z:"+nc.getzCord());
 		
 	}
 	
-
+	
 	
 	private static NodeCord findNearestNode(NodeCord nc, double x, double y, double z, ArrayList<NodeCord> nodeCr) {
 		// TODO Auto-generated method stub
 		
-		double min= Math.sqrt(Math.pow(x - nodeCr.get(0).getxCord(),2)+
-							Math.pow(y-nodeCr.get(0).getyCord(),2)+
-							Math.pow(z-nodeCr.get(0).getzCord(),2));
+		NodeCord temp = new NodeCord(0,0,0,0);
+		temp=nodeCr.get(0);
+		int min=Math.sqrt(0);
 		
-		for(int i=1;i<nodeCr.size();i++){
-			
-			double dist=Math.sqrt(Math.pow(x - nodeCr.get(i).getxCord(),2)+
-					Math.pow(y-nodeCr.get(i).getyCord(),2)+
-					Math.pow(z-nodeCr.get(i).getzCord(),2));
+		for(int i=0;i<nodeCr.size();i++){
 			 
-			if((dist)<min)
-			{
-				min=dist;
-				nc=nodeCr.get(i);
-			}
+			if()
+			
 			
 			
 		}
+		
+		
 		
 		return nc;
 	}

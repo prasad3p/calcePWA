@@ -29,18 +29,12 @@ public class CombineFiles {
 		NodeVal = readNodeValFile(NodeVal,FILENAME2);	
 		
 		//Write arraylists to excel file.
-		//writeToExcel(NodeCr,NodeVal);
+		writeToExcel(NodeCr,NodeVal);
 		
-		NodeCord nc = new NodeCord(0, 0, 0, 0);
-		//Point to be found
-		double x=0.0045,y=0.0189,z = 0.0056;
 		//Find nearest point in a 3d plane to a given point.
+		NodeCord nc = new NodeCord(0, 0, 0, 0);
+		double x=0,y=0,z = 0;
 		nc=findNearestNode(nc,x,y,z,NodeCr);
-		System.out.println("Nearest point:\n"
-				+"Node:"+nc.getNodeNum()
-				+" x:"+nc.getxCord()
-				+" y:"+nc.getyCord()
-				+" z:"+nc.getzCord());
 		
 	}
 	
