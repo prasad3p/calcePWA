@@ -1,0 +1,12 @@
+package calePWA;
+
+public class NodeCord {
+	
+	private int nodeNum;
+	private double xCord;
+	private double yCord;
+	private double zCord;
+	
+	
+	
+}
