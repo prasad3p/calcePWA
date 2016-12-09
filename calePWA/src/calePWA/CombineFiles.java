@@ -14,9 +14,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class CombineFiles {
 
-	private static String FILENAME =System.getProperty("user.home") +"\\Desktop\\calecPWA\\nodes.txt";
-	private static String FILENAME2 =System.getProperty("user.home") +"\\Desktop\\calecPWA\\zdisp.txt";
-	private static String home = System.getProperty("user.home")+"\\Downloads\\Result.xlsx";
+	private static String FILENAME =System.getProperty("user.home") +"\\Desktop\\calecPWA\\nodes (1).txt";
+	private static String FILENAME2 =System.getProperty("user.home") +"\\Desktop\\calecPWA\\displacement.txt";
+	private static String home = System.getProperty("user.home")+"\\Desktop\\calecPWA\\Result2.xlsx";
 	
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
@@ -29,7 +29,7 @@ public class CombineFiles {
 		NodeVal = readNodeValFile(NodeVal,FILENAME2);	
 		
 		//Write arraylists to excel file.
-		//writeToExcel(NodeCr,NodeVal);
+		writeToExcel(NodeCr,NodeVal);
 		
 		NodeCord nc = new NodeCord(0, 0, 0, 0);
 		//Point to be found
