@@ -1,0 +1,116 @@
+package calePWA;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+
+public class CombineFiles5 {
+
+	private static String FILENAME =System.getProperty("user.home") +"\\Desktop\\calecPWA\\nodes (1).txt";
+	private static String FILENAME2 =System.getProperty("user.home") +"\\Desktop\\calecPWA\\displacement.txt";
+	private static String home = System.getProperty("user.home")+"\\Desktop\\calecPWA\\Result2.xlsx";
+	private static String home2 = System.getProperty("user.home")+"\\Desktop\\calecPWA\\Result2.txt";
+	
+	public static void main(String[] args) throws IOException {
+		
+		String sCurrentLine = null;
+		String sCurrentLine2 = null;
+		
+		PrintWriter writer = new PrintWriter(home2);
+		Pattern patt = Pattern.compile(" \\d+ +\\d.+\\d+");
+		
+		BufferedReader br = new BufferedReader(new FileReader(FILENAME));
+		BufferedReader br2 = new BufferedReader(new FileReader(FILENAME2));
+		XSSFWorkbook workbook = new XSSFWorkbook(); 
+	    XSSFSheet spreadsheet = workbook.createSheet("Node details");
+	    XSSFRow row=spreadsheet.createRow(0);
+	    Cell cell=row.createCell(0);
+	    cell.setCellValue("Node");
+	    Cell cell1=row.createCell(1);
+	    cell1.setCellValue("X");
+	    Cell cell2=row.createCell(2);
+	    cell2.setCellValue("Y");
+	    Cell cell3=row.createCell(3);
+	    cell3.setCellValue("Z");
+	    Cell cell4=row.createCell(4);
+	    cell4.setCellValue("Value");
+	    int rowId=1;
+	   
+		while(true){
+			
+			Node node = new Node(0,0, 0, 0, 0);
+			while((sCurrentLine = br.readLine()) != null){
+				Matcher m = patt.matcher(sCurrentLine);
+				if(m.find())
+				{
+						
+						int st = m.start(0);
+						int en = m.end(0);
+						String sub = sCurrentLine.substring(st, en);
+						String[] splits = sub.split("\\s+");
+						node.setNodeNum(Integer.valueOf(splits[1]));
+						node.setxCord(Double.parseDouble(splits[2]));
+						node.setyCord(Double.parseDouble(splits[3]));
+						node.setzCord(Double.parseDouble(splits[4]));
+						break;
+				}
+				sCurrentLine=null;
+				
+			}
+			while((sCurrentLine2 = br2.readLine()) != null){
+				Matcher m = patt.matcher(sCurrentLine2);
+				if(m.find())
+				{
+						int st = m.start(0);
+						int en = m.end(0);
+						String sub = sCurrentLine2.substring(st, en);
+						String[] splits = sub.split("\\s+");
+						node.setNodeNum(Integer.valueOf(splits[1]));
+						node.setValue(Double.parseDouble(splits[2]));
+						break;
+					
+				}
+				sCurrentLine2=null;
+	
+			}
+			
+			String printVal=node.getNodeNum()+" "+node.getxCord()+" "+node.getyCord()+" "+node.getzCord()+" "+node.getValue();
+			if(sCurrentLine==null && sCurrentLine2==null) break;
+			writer.println(printVal);
+			int j=0;
+	    	row=spreadsheet.createRow(rowId);
+	    	Cell cellx=row.createCell(j++);
+	    	cellx.setCellValue(node.getNodeNum());
+	    	Cell celly=row.createCell(j++);
+	    	celly.setCellValue(node.getxCord());
+	    	Cell cellz=row.createCell(j++);
+	    	cellz.setCellValue(node.getyCord());
+	    	Cell cellw=row.createCell(j++);
+	    	cellw.setCellValue(node.getzCord());
+	    	Cell cellv=row.createCell(j);
+	    	cellv.setCellValue(node.getValue());	
+			rowId++;
+		}
+		FileOutputStream out = new FileOutputStream(new File(home));
+		workbook.write(out);
+		out.close();
+		writer.close();
+		br.close();
+		br2.close();
+		workbook.close();
+	}
+	
+
+}
