@@ -1,0 +1,20 @@
+package calePWA;
+import dataStructures.Component;
+
+public class FIndNodes {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String myID="";
+		String partName="";
+		Component c = new Component("", null, 0, 0, 0, "");
+		
+		c=getComponentDetails(myID,partName);
+	}
+
+	private static Component getComponentDetails(String compId, String partName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

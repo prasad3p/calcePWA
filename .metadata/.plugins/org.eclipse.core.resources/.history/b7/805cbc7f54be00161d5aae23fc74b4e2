@@ -1,0 +1,15 @@
+package calePWA;
+
+public class Component {
+	
+	private String id;
+	private Part p;
+	private double xC;
+	private double yC;
+	private double zC;
+	private String side;
+	
+	
+	
+
+}
