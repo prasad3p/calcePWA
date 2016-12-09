@@ -1,0 +1,54 @@
+package calePWA;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import dataStructures.Component;
+
+public class FIndNodes {
+
+	private static String COMPFILEPATH=System.getProperty("user.home") +"\\Desktop\\calecPWA\\comp1.xlsx";
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		String myID="FD1";
+		String partName="";
+		Component comp = new Component("", null, 0, 0, 0, "");
+		comp=getComponentDetails(comp,myID,partName,COMPFILEPATH);
+		System.out.println(comp.getId());
+		
+		
+		
+	}
+
+	private static Component getComponentDetails(Component comp, String myID, String partName, String fileName) throws IOException {
+		// TODO Auto-generated method stub
+
+		InputStream input = new FileInputStream(fileName);
+		XSSFWorkbook workbook = new XSSFWorkbook(input); 
+	    XSSFSheet sheet = workbook.getSheetAt(0);
+		
+		for(Row row : sheet) {
+            for(Cell cell : row) {
+                    
+            		  if(cell.getRichStringCellValue().getString().replaceAll("\\s","") == myID);{
+                    	comp.setId(myID);
+                    	cell= cell:row;
+                    	break;
+            		  }	
+                    
+                }
+ 
+        }		
+		//rownr = findRow(sheet, cellContent);
+
+		return comp;
+	}
+
+}

@@ -1,0 +1,80 @@
+package calePWA;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.swing.text.html.HTMLDocument.Iterator;
+
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import dataStructures.Component;
+
+public class FIndNodes {
+
+	private static String COMPFILEPATH=System.getProperty("user.home") +"\\Desktop\\calecPWA\\comp1.xlsx";
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		String myID="FD1";
+		String partName="";
+		Component comp = new Component("", null, 0, 0, 0, "");
+		comp=getComponentDetails(comp,myID,partName,COMPFILEPATH);
+		System.out.println(comp.getId());
+		
+		
+		
+	}
+
+	private static Component getComponentDetails(Component comp, String myID, String partName, String fileName) throws IOException {
+		// TODO Auto-generated method stub
+
+		InputStream input = new FileInputStream(fileName);
+		XSSFWorkbook workbook = new XSSFWorkbook(input); 
+	    XSSFSheet sheet = workbook.getSheetAt(0);
+		
+	    Iterator<> itr = sheet.iterator();
+        while (itr.hasNext()) {
+            Row row = itr.next();
+            Iterator<Cell> cellIterator = row.cellIterator();
+            while (cellIterator.hasNext()) {
+                Cell cell = cellIterator.next();
+                if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
+                    if (cell.getRichStringCellValue().getString().trim()
+                            .equals(cellContent)) {
+                        row = itr.next();
+                        int val = cell.getColumnIndex();
+                        cell = row.getCell(val);
+                        String srow = cell.getStringCellValue();
+                        return srow;
+
+                    }
+
+                }
+
+            }
+        }
+	    
+	    
+		for(Row row : sheet) {
+            for(Cell cell : row) {
+                    
+            		  if(cell.getRichStringCellValue().getString().replaceAll("\\s","") == myID);{
+                    	comp.setId(myID);
+          
+                    	break;
+            		  }	
+                    
+                }
+ 
+        }		
+		//rownr = findRow(sheet, cellContent);
+
+		return comp;
+	}
+
+}
