@@ -23,7 +23,7 @@ public class CreateList {
 	private static String HOME = System.getProperty("user.home")+"\\Desktop\\calecPWA\\Result2.xlsx";
 	private static String HOME2 = System.getProperty("user.home")+"\\Desktop\\calecPWA\\Result2.txt";
 	
-	public ArrayList<Node> createListStarter(ArrayList<Node> nodeList) throws IOException {
+	public ArrayList<Node> CreateListStarter(ArrayList<Node> nodeList) throws IOException {
 		
 		nodeList = createList(nodeList,FILENAME,FILENAME2,HOME,HOME2);
 		return  nodeList;

@@ -23,13 +23,14 @@ public class CreateList {
 	private static String HOME = System.getProperty("user.home")+"\\Desktop\\calecPWA\\Result2.xlsx";
 	private static String HOME2 = System.getProperty("user.home")+"\\Desktop\\calecPWA\\Result2.txt";
 	
-	public ArrayList<Node> createListStarter(ArrayList<Node> nodeList) throws IOException {
+	public static ArrayList<Node> CreateListStarter() throws IOException {
 		
-		nodeList = createList(nodeList,FILENAME,FILENAME2,HOME,HOME2);
-		return  nodeList;
+		ArrayList<Node> NodeList = new ArrayList<Node>();
+		NodeList = createList(NodeList,FILENAME,FILENAME2,HOME,HOME2);
+		return  NodeList;
 	}
 
-	public ArrayList<Node> createList(ArrayList<Node> nodeList, String fILENAME3, String fILENAME22, String home3, String home22) throws NumberFormatException, IOException {
+	private static ArrayList<Node> createList(ArrayList<Node> nodeList, String fILENAME3, String fILENAME22, String home3, String home22) throws NumberFormatException, IOException {
 		// TODO Auto-generated method stub
 		String sCurrentLine = null;
 		String sCurrentLine2 = null;

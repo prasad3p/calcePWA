@@ -1,9 +1,12 @@
 package calePWA;
-
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import javax.swing.text.html.HTMLDocument.Iterator;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -38,11 +41,6 @@ public class FIndNodes {
 		//Find list of Nodes below the given component/part.
 		ArrayList<Node> nodeList = new ArrayList<Node>();
 		nodeList = findNodesUnderThePart(nodeList,comp);
-		
-		
-		
-		
-		
 		
 		
 		

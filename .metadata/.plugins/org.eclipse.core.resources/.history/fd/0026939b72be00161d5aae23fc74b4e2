@@ -1,15 +1,22 @@
 package calePWA;
-
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+
+import javax.swing.text.html.HTMLDocument.Iterator;
+
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import com.graphbuilder.struc.LinkedList.Node;
+
 import dataStructures.Component;
-import dataStructures.Node;
 import dataStructures.Part;
 
 public class FIndNodes {
@@ -30,28 +37,14 @@ public class FIndNodes {
 		//Initialize part data structure.
 		comp=getPartDetails(comp,PARTSFILEPATH);
 
-		//Create list of all the Nodes on the grid.
-		ArrayList<Node> nodeListMain = new ArrayList<Node>();
-		CreateList createList = new CreateList();
-		nodeListMain=createList.createListStarter(nodeListMain);
-		
-		//Find list of Nodes below the given component/part.
+		//Find list of Nodes below the given part.
 		ArrayList<Node> nodeList = new ArrayList<Node>();
 		nodeList = findNodesUnderThePart(nodeList,comp);
-		
-		
-		
-		
-		
-		
-		
 		
 	}
 
 	private static ArrayList<Node> findNodesUnderThePart(ArrayList<Node> nodeList, Component comp) {
 		// TODO Auto-generated method stub
-		
-		
 		return nodeList;
 	}
 
