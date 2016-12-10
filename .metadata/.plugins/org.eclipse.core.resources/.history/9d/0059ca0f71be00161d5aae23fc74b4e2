@@ -33,8 +33,6 @@ public class FIndNodes {
 		
 		//Initialize part data structure.
 		comp=getPartDetails(comp,PARTSFILEPATH);
-		
-		
 
 		
 		

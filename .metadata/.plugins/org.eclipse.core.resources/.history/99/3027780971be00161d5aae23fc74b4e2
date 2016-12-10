@@ -30,11 +30,9 @@ public class FIndNodes {
 		//Searches component in the excel file.
 		//Initialize component data structure.
 		comp=getComponentDetails(comp,myID,COMPFILEPATH);
-		
 		//Initialize part data structure.
 		comp=getPartDetails(comp,PARTSFILEPATH);
-		
-		
+		System.out.println("Part details:\n"+comp.getP().getId());
 
 		
 		

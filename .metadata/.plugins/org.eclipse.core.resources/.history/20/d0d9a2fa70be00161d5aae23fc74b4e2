@@ -24,18 +24,23 @@ public class FIndNodes {
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		
-		String myID="U6";
+		String myID="R5";
 		Component comp = new Component("", null, 0, 0, 0, "");
 		
 		//Searches component in the excel file.
 		//Initialize component data structure.
 		comp=getComponentDetails(comp,myID,COMPFILEPATH);
-		
+		System.out.println(comp.getId());
+		System.out.println(comp.getP().getId());
+		System.out.println(comp.getSide());
+		System.out.println(comp.getxC());
+		System.out.println(comp.getyC());
+		System.out.println(comp.getzC());
 		//Initialize part data structure.
 		comp=getPartDetails(comp,PARTSFILEPATH);
-		
-		
-
+		System.out.println("Part details:\n"+comp.getP().getId());
+		System.out.println(comp.getP().getLen());
+		System.out.println(comp.getP().getWid());
 		
 		
 	}

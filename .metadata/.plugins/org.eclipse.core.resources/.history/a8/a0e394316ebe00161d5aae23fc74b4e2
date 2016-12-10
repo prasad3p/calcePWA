@@ -19,28 +19,25 @@ import dataStructures.Part;
 public class FIndNodes {
 
 	private static String COMPFILEPATH=System.getProperty("user.home") +"\\Desktop\\calecPWA\\comp1.xlsx";
-	private static String PARTSFILEPATH=System.getProperty("user.home") +"\\Desktop\\calecPWA\\parts1.xlsx";
+	private static String PARTSFILEPATH=System.getProperty("user.home") +"\\Desktop\\calecPWA\\comp1.xlsx";
 	
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		
-		String myID="U6";
+		String myID="R7";
 		Component comp = new Component("", null, 0, 0, 0, "");
 		
 		//Searches component in the excel file.
 		//Initialize component data structure.
 		comp=getComponentDetails(comp,myID,COMPFILEPATH);
+		//Initialize component part structure.
+		getPartDetails(comp,PARTSFILEPATH);
 		
-		//Initialize part data structure.
-		comp=getPartDetails(comp,PARTSFILEPATH);
-		
-		
-
 		
 		
 	}
 
-	private static Component getPartDetails(Component comp, String fileName) throws IOException {
+	private static void getPartDetails(Component comp, String fileName) throws IOException {
 		// TODO Auto-generated method stub
 		InputStream input = new FileInputStream(fileName);
 		XSSFWorkbook workbook = new XSSFWorkbook(input); 
@@ -53,12 +50,16 @@ public class FIndNodes {
             	if(cell.getRichStringCellValue().getString().replaceAll("\\s","").equals(comp.getP().getId())){
             		
             		flag=true;
-                   	j+=5;
+                   	j+=3;
                    	cell=row.getCell(++j);
-                   	comp.getP().setLen((double)(cell.getNumericCellValue()));
+                   	p1.setId(cell.getRichStringCellValue().getString().replaceAll("\\s",""));
+                   	comp.setP(p1);
                    	cell=row.getCell(++j);
-                   	comp.getP().setWid((double)(cell.getNumericCellValue()));
-
+                   	comp.setSide(cell.getRichStringCellValue().getString().replaceAll("\\s",""));
+                   	cell=row.getCell(++j);
+                   	comp.setxC((double)(cell.getNumericCellValue()));
+                   	cell=row.getCell(++j);
+                   	comp.setyC((double)(cell.getNumericCellValue()));
             	}
                	break;
             }
