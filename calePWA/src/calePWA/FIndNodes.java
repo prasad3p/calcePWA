@@ -20,7 +20,7 @@ public class FIndNodes {
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		
-		String myID="U6";
+		String myID="FD5";
 		Component comp = new Component("", null, 0, 0, 0, "");
 		
 		//Searches component in the excel file.
@@ -29,29 +29,55 @@ public class FIndNodes {
 		
 		//Initialize part data structure.
 		comp=getPartDetails(comp,PARTSFILEPATH);
+		
+		//Printing part details
+		System.out.println("Comp ID:"+comp.getId());
+		System.out.println("Side:"+comp.getSide());
+		System.out.println("Center x-cord:"+comp.getxC());
+		System.out.println("Center y-cord:"+comp.getyC());
+		System.out.println("Center z-cord:"+comp.getzC());
+		System.out.println("Part id:"+comp.getP().getId());
+		System.out.println("Part length:"+comp.getP().getLen());
+		System.out.println("Part width:"+comp.getP().getWid());
 
 		//Create list of all the Nodes on the grid.
 		ArrayList<Node> nodeListMain = new ArrayList<Node>();
 		CreateList createList = new CreateList();
 		nodeListMain=createList.createListStarter(nodeListMain);
+		
 		System.out.println("Main nodelist size:"+nodeListMain.size());
 		
 		//Find list of Nodes below the given component/part.
 		ArrayList<Node> nodesUnderThecomp = new ArrayList<Node>();
 		nodesUnderThecomp = findNodesUnderThePart(nodesUnderThecomp,comp,nodeListMain);
-		System.out.println("Nodes under given part are:"+nodesUnderThecomp.size());
+		System.out.println("Number of Nodes under given part:"+nodesUnderThecomp.size());
+		
+		double ySum=0;
 		for(int i=0;i<nodesUnderThecomp.size();i++){
-			System.out.println(nodesUnderThecomp.get(i).getNodeNum());
+			ySum+=nodesUnderThecomp.get(i).getzCord();
 		}
+		
+		comp.setzC(ySum/nodesUnderThecomp.size());
+		System.out.println("Center z-cord:"+comp.getzC());
 		
 	}
 
 	private static ArrayList<Node> findNodesUnderThePart(ArrayList<Node> nodeList, Component comp,ArrayList<Node> nodeListMain) {
 		// TODO Auto-generated method stub
-		double xMax = comp.getxC()+comp.getP().getLen()/2;
-		double xMin = comp.getxC()-comp.getP().getLen()/2;
-		double yMax = comp.getyC()+comp.getP().getWid()/2;
-		double yMin = comp.getyC()-comp.getP().getWid()/2;
+		double xMax = comp.getxC()+(comp.getP().getLen()/2);
+		double xMin = comp.getxC()-(comp.getP().getLen()/2);
+		double yMax = comp.getyC()+(comp.getP().getWid()/2);
+		double yMin = comp.getyC()-(comp.getP().getWid()/2);
+		
+		/*xMax=xMax*Math.pow(10, -3);
+		xMin=xMin*Math.pow(10, -3);
+		yMax=yMax*Math.pow(10, -3);
+		yMin=yMin*Math.pow(10, -3);*/
+		
+		System.out.println("xMax:"+xMax);
+		System.out.println("xMin:"+xMin);
+		System.out.println("yMax:"+yMax);
+		System.out.println("yMin:"+yMin);
 		
 		for(int i=0;i<nodeListMain.size();i++){
 			
@@ -91,6 +117,8 @@ public class FIndNodes {
             j=-1;
 		}
 		workbook.close();
+		comp.getP().setLen(comp.getP().getLen()*Math.pow(10, -3));
+		comp.getP().setWid(comp.getP().getWid()*Math.pow(10, -3));
 		return comp;	
 	}
 
@@ -126,6 +154,10 @@ public class FIndNodes {
             j=-1;
 		}
 		workbook.close();
+		//Scale to mm.
+		comp.setxC(comp.getxC()*Math.pow(10,-3));
+		comp.setyC(comp.getyC()*Math.pow(10,-3));
+		comp.setzC(comp.getzC()*Math.pow(10,-3));
 		return comp;
 	}
 
