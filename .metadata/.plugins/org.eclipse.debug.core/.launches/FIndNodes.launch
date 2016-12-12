@@ -8,4 +8,5 @@
 </listAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="calePWA.FIndNodes"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="calePWA"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xmx1024m"/>
 </launchConfiguration>

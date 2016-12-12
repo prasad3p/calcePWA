@@ -34,24 +34,34 @@ public class FIndNodes {
 		ArrayList<Node> nodeListMain = new ArrayList<Node>();
 		CreateList createList = new CreateList();
 		nodeListMain=createList.createListStarter(nodeListMain);
+		System.out.println("Main nodelist size:"+nodeListMain.size());
 		
 		//Find list of Nodes below the given component/part.
-		ArrayList<Node> nodeList = new ArrayList<Node>();
-		nodeList = findNodesUnderThePart(nodeList,comp);
-		
-		
-		
-		
-		
-		
-		
+		ArrayList<Node> nodesUnderThecomp = new ArrayList<Node>();
+		nodesUnderThecomp = findNodesUnderThePart(nodesUnderThecomp,comp,nodeListMain);
+		System.out.println("Nodes under given part are:"+nodesUnderThecomp.size());
+		for(int i=0;i<nodesUnderThecomp.size();i++){
+			System.out.println(nodesUnderThecomp.get(i).getNodeNum());
+		}
 		
 	}
 
-	private static ArrayList<Node> findNodesUnderThePart(ArrayList<Node> nodeList, Component comp) {
+	private static ArrayList<Node> findNodesUnderThePart(ArrayList<Node> nodeList, Component comp,ArrayList<Node> nodeListMain) {
 		// TODO Auto-generated method stub
+		double xMax = comp.getxC()+comp.getP().getLen()/2;
+		double xMin = comp.getxC()-comp.getP().getLen()/2;
+		double yMax = comp.getyC()+comp.getP().getWid()/2;
+		double yMin = comp.getyC()-comp.getP().getWid()/2;
 		
-		
+		for(int i=0;i<nodeListMain.size();i++){
+			
+			double xCord=nodeListMain.get(i).getxCord();
+			double yCord=nodeListMain.get(i).getyCord();
+			
+			if(xCord <= xMax && xCord >=xMin && yCord <=yMax && yCord >= yMin){
+				nodeList.add(nodeListMain.get(i));
+			}
+		}
 		return nodeList;
 	}
 
@@ -81,9 +91,7 @@ public class FIndNodes {
             j=-1;
 		}
 		workbook.close();
-		return comp;
-		
-		
+		return comp;	
 	}
 
 	private static Component getComponentDetails(Component comp, String myID, String fileName) throws IOException {

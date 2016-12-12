@@ -29,7 +29,7 @@ public class CreateList {
 		return  nodeList;
 	}
 
-	public ArrayList<Node> createList(ArrayList<Node> nodeList, String fILENAME3, String fILENAME22, String home3, String home22) throws NumberFormatException, IOException {
+	private ArrayList<Node> createList(ArrayList<Node> nodeList, String fILENAME3, String fILENAME22, String home3, String home22) throws NumberFormatException, IOException {
 		// TODO Auto-generated method stub
 		String sCurrentLine = null;
 		String sCurrentLine2 = null;
