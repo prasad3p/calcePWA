@@ -20,7 +20,7 @@ public class FIndNodes {
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		
-		String myID="R3";
+		String myID="FD5";
 		Component comp = new Component("", null, 0, 0, 0, "");
 		
 		//Searches component in the excel file.
@@ -57,15 +57,7 @@ public class FIndNodes {
 			ySum+=nodesUnderThecomp.get(i).getzCord();
 		}
 		
-		
-		
-		
-		if(nodesUnderThecomp.size()!=0){
-			comp.setzC(ySum/nodesUnderThecomp.size());
-			}
-		
-		
-		
+		comp.setzC(ySum/nodesUnderThecomp.size());
 		System.out.println("Center z-cord:"+comp.getzC());
 		
 	}

@@ -7,7 +7,6 @@ INDEX VERSION 1.129+C:\Users\Toshiba\Desktop\gitrepos\calcePWA\.metadata\.plugin
 3045262204.index
 188619105.index
 821015522.index
-3606755903.index
 3603594232.index
 2167310551.index
 1583927216.index
