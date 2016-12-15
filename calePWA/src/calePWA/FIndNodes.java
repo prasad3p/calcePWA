@@ -57,7 +57,7 @@ public class FIndNodes {
 			ySum+=nodesUnderThecomp.get(i).getzCord();
 		}
 		
-		if(nodesUnderTheComp.size()!=0){
+		if(nodesUnderThecomp.size()!=0){
 			comp.setzC(ySum/nodesUnderThecomp.size());
 			}
 		System.out.println("Center z-cord:"+comp.getzC());
