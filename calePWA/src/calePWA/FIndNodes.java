@@ -16,36 +16,66 @@ public class FIndNodes {
 
 	private static String COMPFILEPATH=System.getProperty("user.home") +"\\Desktop\\calecPWA\\comp1.xlsx";
 	private static String PARTSFILEPATH=System.getProperty("user.home") +"\\Desktop\\calecPWA\\parts1.xlsx";
+	private static Component comp = new Component("", null, 0, 0, 0, "");
+	private static ArrayList<Node> nodeListMain = new ArrayList<Node>();
 	
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		
-		String myID="R3";
-		Component comp = new Component("", null, 0, 0, 0, "");
+		String myID="FD8";
 		
-		//Searches component in the excel file.
-		//Initialize component data structure.
-		comp=getComponentDetails(comp,myID,COMPFILEPATH);
+		Thread t1= new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				//Searches component in the excel file.
+				//Initialize component data structure.
+				try {
+					comp=getComponentDetails(comp,myID,COMPFILEPATH);
+					comp=getPartDetails(comp,PARTSFILEPATH);
+					//Printing part details
+					System.out.println("Comp ID:"+comp.getId());
+					System.out.println("Side:"+comp.getSide());
+					System.out.println("Center x-cord:"+comp.getxC());
+					System.out.println("Center y-cord:"+comp.getyC());
+					System.out.println("Center z-cord:"+comp.getzC());
+					System.out.println("Part id:"+comp.getP().getId());
+					System.out.println("Part length:"+comp.getP().getLen());
+					System.out.println("Part width:"+comp.getP().getWid());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				//Initialize part data structure.
+			}
+		});
 		
-		//Initialize part data structure.
-		comp=getPartDetails(comp,PARTSFILEPATH);
 		
-		//Printing part details
-		System.out.println("Comp ID:"+comp.getId());
-		System.out.println("Side:"+comp.getSide());
-		System.out.println("Center x-cord:"+comp.getxC());
-		System.out.println("Center y-cord:"+comp.getyC());
-		System.out.println("Center z-cord:"+comp.getzC());
-		System.out.println("Part id:"+comp.getP().getId());
-		System.out.println("Part length:"+comp.getP().getLen());
-		System.out.println("Part width:"+comp.getP().getWid());
-
-		//Create list of all the Nodes on the grid.
-		ArrayList<Node> nodeListMain = new ArrayList<Node>();
-		CreateList createList = new CreateList();
-		nodeListMain=createList.createListStarter(nodeListMain);
+		Thread t2= new Thread(new Runnable() {
+			public void run() {
+			//Create list of all the Nodes on the grid.
+				CreateList createList = new CreateList();
+				try {
+					nodeListMain=createList.createListStarter(nodeListMain);
+					System.out.println("Main nodelist size:"+nodeListMain.size());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		
-		System.out.println("Main nodelist size:"+nodeListMain.size());
+		
+		t1.start();
+		t2.start();
+		try {
+			t1.join();
+			t2.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 		
 		//Find list of Nodes below the given component/part.
 		ArrayList<Node> nodesUnderThecomp = new ArrayList<Node>();
@@ -56,17 +86,12 @@ public class FIndNodes {
 		for(int i=0;i<nodesUnderThecomp.size();i++){
 			ySum+=nodesUnderThecomp.get(i).getzCord();
 		}
-		
-		
-		
-		
-		if(nodesUnderThecomp.size()!=0){
+				
+		if(nodesUnderThecomp.size()!=0)
 			comp.setzC(ySum/nodesUnderThecomp.size());
-			}
-		
-		
-		
+	
 		System.out.println("Center z-cord:"+comp.getzC());
+		
 		
 	}
 

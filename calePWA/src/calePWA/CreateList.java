@@ -18,8 +18,8 @@ import dataStructures.Node;
 
 public class CreateList {
 
-	private static String FILENAME =System.getProperty("user.home") +"\\Desktop\\calecPWA\\nodes1.txt";
-	private static String FILENAME2 =System.getProperty("user.home") +"\\Desktop\\calecPWA\\zdisp.txt";
+	private static String FILENAME =System.getProperty("user.home") +"\\Desktop\\calecPWA\\nodes (1).txt";
+	private static String FILENAME2 =System.getProperty("user.home") +"\\Desktop\\calecPWA\\displacement.txt";
 	private static String HOME = System.getProperty("user.home")+"\\Desktop\\calecPWA\\Result2.xlsx";
 	private static String HOME2 = System.getProperty("user.home")+"\\Desktop\\calecPWA\\Result2.txt";
 	
