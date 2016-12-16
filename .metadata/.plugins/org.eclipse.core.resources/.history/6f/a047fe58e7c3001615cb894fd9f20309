@@ -94,8 +94,6 @@ public class FIndNodes {
 	
 		System.out.println("Center z-cord:"+comp.getzC());
 		long endTime   = System.currentTimeMillis();
-		long totalTime = endTime - startTime;
-		System.out.println(totalTime);
 		
 	}
 

@@ -1,9 +1,0 @@
-package calePWA;
-
-public class Part {
-
-	private String id;
-	private double len;
-	private double wid;
-	
-}

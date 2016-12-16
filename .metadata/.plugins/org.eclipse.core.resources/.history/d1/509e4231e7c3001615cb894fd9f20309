@@ -24,8 +24,6 @@ public class FIndNodes {
 		
 		String myID="FD8";
 		
-		long startTime = System.currentTimeMillis();
-
 		Thread t1= new Thread(new Runnable() {
 			
 			@Override
@@ -93,9 +91,7 @@ public class FIndNodes {
 			comp.setzC(ySum/nodesUnderThecomp.size());
 	
 		System.out.println("Center z-cord:"+comp.getzC());
-		long endTime   = System.currentTimeMillis();
-		long totalTime = endTime - startTime;
-		System.out.println(totalTime);
+		
 		
 	}
 
